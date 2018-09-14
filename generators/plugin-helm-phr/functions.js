@@ -19,10 +19,10 @@ module.exports = {
     const srcPath = '../../..';
     process.chdir(srcPath);
 
-    fsExtra.move('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/images', 'assets/images', { overwrite: true }, function(err) {
+    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/images', 'assets/images', { overwrite: true }, function(err) {
       if (err) throw err;
     });
-    fsExtra.move('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/themes', 'styles/themes', { overwrite: true }, function(err) {
+    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/themes', 'styles/themes', { overwrite: true }, function(err) {
       if (err) throw err;
     });
     return true;
@@ -36,10 +36,10 @@ module.exports = {
   importThemeStyles: function () {
     console.log(yosay(`${chalk.yellow('Step 3:')} Including Helm-PHR CSS files...`));
     const newRow = "\n\n\n@import 'themes/index';";
-    fs.appendFile('styles/main.scss', newRow, function(err) {
+    fs.appendFileSync('styles/main.scss', newRow, function(err) {
       if (err) throw err;
     });
-    fs.appendFile('styles/core.scss', newRow, function(err) {
+    fs.appendFileSync('styles/core.scss', newRow, function(err) {
       if (err) throw err;
     });
     return true;
@@ -53,7 +53,7 @@ module.exports = {
    */
   switchHelmTheme: function (el) {
     console.log(yosay(`${chalk.yellow('Step 4:')} Switching theme configuration...`));
-    el.fs.copy(
+    fs.copyFileSync(
       el.templatePath('themeConfigs.txt'),
       'themes.config.js'
     );
@@ -68,11 +68,11 @@ module.exports = {
    */
   changeLogoImages: function (el) {
     console.log(yosay(`${chalk.yellow('Step 5:')} Changing images...`));
-    el.fs.copy(
+    fs.copyFileSync(
       el.templatePath('mainLogo.txt'),
       'components/presentational/MainLogo/LogoImage.js'
     );
-    el.fs.copy(
+    fs.copyFileSync(
       el.templatePath('headerImage.txt'),
       'components/containers/App/HeaderImage.js'
     );
@@ -110,7 +110,7 @@ module.exports = {
    * @return {boolean}
    */
   changePrevImages: function (el) {
-    el.fs.copy(
+    fs.copyFileSync(
       el.templatePath('prevImage.txt'),
       'components/pages/PatientsSummary/ImageSources.js'
     );
