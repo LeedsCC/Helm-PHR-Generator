@@ -35,7 +35,7 @@ module.exports = class extends Generator {
       commonFunctions.cloneProject(
         this,
         'HelmPHR-theme plugin',
-        'master',
+        'develop-merge',
         'https://github.com/PulseTile-Plugins/Plugin-Helm-PHR-Theme',
         'Plugin-Helm-PHR-Theme'
       );
