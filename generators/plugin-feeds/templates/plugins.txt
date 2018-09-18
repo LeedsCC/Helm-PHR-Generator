@@ -52,6 +52,7 @@ export const themePatientSummaryConfig = [
     {
       key: '<%= item.url %>',
       title: '<%= item.title %>',
+      emptyMessage: '<%= item.emptyMessage %>',
       titleCheckboxes: '<%= item.title %>',
       state: '<%= item.url %>',
       nameCheckboxes: '<%= item.url %>',
