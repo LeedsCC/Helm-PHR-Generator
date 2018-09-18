@@ -7,6 +7,7 @@ module.exports = {
     plugins: {
       getTitle: 'topThreeThingsTitle',
       title: 'Top Three Things',
+      emptyMessage: 'No information available. Please list the Top 3 Things that concern you',
       url: 'topThreeThings',
       import: 'topThreeThings',
       pluginDirectory: '../plugins/TopThreeThings/index',
@@ -34,6 +35,7 @@ module.exports = {
     plugins: {
       getTitle: 'vaccinationsTitle',
       title: 'Vaccinations',
+      emptyMessage: 'No information available.',
       url: 'vaccinations',
       import: 'vaccinations',
       pluginDirectory: '../plugins/Vaccinations/index',
@@ -61,6 +63,7 @@ module.exports = {
     plugins: {
       getTitle: 'feedsTitle',
       title: 'Feeds',
+      emptyMessage: 'No information available.',
       url: 'feeds',
       import: 'feeds',
       pluginDirectory: '../plugins/Feeds/index',
