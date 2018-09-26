@@ -9,11 +9,13 @@ If you want to install HelmPHR-version automatically, you should read **"Install
 # Content
 
 Current version of **Helm-PHR generator** includes four sub-generators:
-1) Core sub-generator (_yo helm-phr:core_);
-2) Silver plugin TopThreeThings sub-generator (_yo helm-phr:plugin-top-three-things_);
-3) Silver plugin Vaccinations sub-generator (_yo helm-phr:plugin-vaccinations_);
-4) Silver plugin Feeds sub-generator (_yo helm-phr:plugin-feeds_);
-5) Plugin HelmPHR-theme sub-generator (_yo helm-phr:plugin-helm-phr_).
+1) **Core** sub-generator (_yo helm-phr:core_);
+2) Silver plugin **TopThreeThings** sub-generator (_yo helm-phr:plugin-top-three-things_);
+3) Silver plugin **Vaccinations** sub-generator (_yo helm-phr:plugin-vaccinations_);
+4) Silver plugin **Feeds** sub-generator (_yo helm-phr:plugin-feeds_);
+5) Plugin **HelmPHR-theme** sub-generator (_yo helm-phr:plugin-helm-phr_);
+6) Plugin **UserTour** sub-generator (_yo helm-phr:plugin-user-tour_);
+7) Plugin **TermsAndConsition** sub-generator (_yo helm-phr:plugin-terms-and-conditions_).
 
 # Core
 
@@ -68,6 +70,14 @@ This sub-generator does the following automatically:
 
 If any errors occur during generator work you should remove project directory and repeat generator command.
 
+# Plugin TermsAndConditions
+
+This sub-generator does the following automatically:
+1) Clone UserTour plugin from GitHub to **plugins/** directory in the project;
+2) Overwrite **TermsAndConditions/** directory in **src/components/containers/**;
+
+If any errors occur during generator work you should remove project directory and repeat generator command.
+
 # Environment
 
 Before installing the Generator, you will need the following:
@@ -103,6 +113,7 @@ Use Yeoman-generator to create your build automatically:
     $ yo helm-phr:plugin-feeds --force
     $ yo helm-phr:plugin-helm-phr --force
     $ yo helm-phr:plugin-user-tour
+    $ yo helm-phr:plugin-terms-and-conditions
 ```
 
 Attribute **--force** is used for overwriting config files by default.
