@@ -15,7 +15,8 @@ Current version of **Helm-PHR generator** includes four sub-generators:
 4) Silver plugin **Feeds** sub-generator (_yo helm-phr:plugin-feeds_);
 5) Plugin **HelmPHR-theme** sub-generator (_yo helm-phr:plugin-helm-phr_);
 6) Plugin **UserTour** sub-generator (_yo helm-phr:plugin-user-tour_);
-7) Plugin **TermsAndConsition** sub-generator (_yo helm-phr:plugin-terms-and-conditions_).
+7) Plugin **TermsAndConsition** sub-generator (_yo helm-phr:plugin-terms-and-conditions_);
+8) Sub-generator for configuration files updating (_yo helm-phr:update_);
 
 # Core
 
@@ -28,17 +29,13 @@ If any errors occur during generator work you should remove project directory an
 
 # Silver plugin TopThreeThings
 
-This sub-generator does the following automatically:
-1) Clone silver TopThreeThings plugin from GitHub to **plugins/** directory in the project;
-2) Update config files unite Core with plugin.
+This sub-generator clones silver TopThreeThings plugin from GitHub to **plugins/** directory in the project;
  
 If any errors occur during generator work you should remove **TopThreeThings/** directory and repeat generator command.
 
 # Silver plugin Vaccinations
 
-This sub-generator does the following automatically:
-1) Clone silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
-2) Update config files unite Core with plugin.
+This sub-generator clones silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
  
 If any errors occur during generator work you should remove **Vaccinations/** directory and repeat generator command.
 
@@ -47,7 +44,6 @@ If any errors occur during generator work you should remove **Vaccinations/** di
 This sub-generator does the following automatically:
 1) Clone silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
 2) Replace files from **replace/** directory to the required paths in the Core;
-3) Update config files unite Core with plugin.
 
 If any errors occur during generator work you should remove **Feeds/** directory and repeat generator command.
 
@@ -76,7 +72,17 @@ This sub-generator does the following automatically:
 1) Clone UserTour plugin from GitHub to **plugins/** directory in the project;
 2) Overwrite **TermsAndConditions/** directory in **src/components/containers/**;
 
-If any errors occur during generator work you should remove project directory and repeat generator command.
+# Updating
+
+This sub-generator updates all configuration files, located in **src/components/theme/config/** :
+- clientUrls.js;
+- plugins.js;
+- synopsisRequests.js;
+- themeSelectors.js;
+
+These files provide relations between Core of project and new plugins.
+
+If any errors occur during generator work you should repeat generator command.
 
 # Environment
 
@@ -114,6 +120,7 @@ Use Yeoman-generator to create your build automatically:
     $ yo helm-phr:plugin-helm-phr --force
     $ yo helm-phr:plugin-user-tour
     $ yo helm-phr:plugin-terms-and-conditions
+    $ yo helm-phr:update
 ```
 
 Attribute **--force** is used for overwriting config files by default.
