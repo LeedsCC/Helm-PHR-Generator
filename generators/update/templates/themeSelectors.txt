@@ -30,18 +30,24 @@ const <%= item.selector %> = createSelector(
 export const themeSynopsisSelector = createSelector(
 <% for (i = 0; i < plugins.length; i++) { %>
 <% item = plugins[i] %>
-    <%= item.selector %>,
+    <% if (item.selector) { %>
+        <%= item.selector %>,
+    <% } %>
 <% } %>
     (
     <% for (i = 0; i < plugins.length; i++) { %>
-    <% item = plugins[i] %>
-        <%= item.url %>,
+        <% item = plugins[i] %>
+        <% if (item.url) { %>
+            <%= item.url %>,
+        <% } %>
     <% } %>
     ) => {
         return {
             <% for (i = 0; i < plugins.length; i++) { %>
-            <% item = plugins[i] %>
-                <%= item.url %>: <%= item.url %>,
+                <% item = plugins[i] %>
+                <% if (item.url) { %>
+                    <%= item.url %>: <%= item.url %>,
+                <% } %>
             <% } %>
         };
     }

@@ -1,7 +1,9 @@
 import _ from 'lodash/fp';
 <% for (i = 0; i < plugins.length; i++) { %>
-<% item = plugins[i] %>
+    <% item = plugins[i] %>
+    <% if (item.requestSynopsis && item.duckUrl) { %>
 import { <%= item.requestSynopsis %> } from '<%= item.duckUrl %>';
+    <% } %>
 <% } %>
 
 const generateFetchListOnMount = (fetchRequest) => {
@@ -57,8 +59,10 @@ const generateArrayOnMount = (requestArray) => {
 
 <% for (i = 0; i < plugins.length; i++) { %>
 <% item = plugins[i] %>
+<% if (item.onMount && item.onMountDetails) { %>
 export const <%= item.onMount %> = (generateFetchListOnMount('<%= item.request %>'));
 export const <%= item.onMountDetails %> = (generateFetchDetailOnMount('<%= item.requestDetails %>'));
+<% } %>
 <% } %>
 
 
@@ -68,7 +72,9 @@ export const <%= item.onMountDetails %> = (generateFetchDetailOnMount('<%= item.
 export const themeSynopsisOnMount = (generateArrayOnMount([
 <% for (i = 0; i < plugins.length; i++) { %>
 <% item = plugins[i] %>
+<% if (item.requestSynopsis && item.request) { %>
     '<%= item.requestSynopsis %>',
+<% } %>
 <% } %>
 ]));
 
@@ -77,7 +83,9 @@ export const themeSynopsisOnMount = (generateArrayOnMount([
  */
 export const themeSynopsisRequests = {
 <% for (i = 0; i < plugins.length; i++) { %>
-<% item = plugins[i] %>
+    <% item = plugins[i] %>
+    <% if (item.requestSynopsis) { %>
     <%= item.requestSynopsis %>,
+    <% } %>
 <% } %>
 };

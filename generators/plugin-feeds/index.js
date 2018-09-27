@@ -33,7 +33,6 @@ module.exports = class extends Generator {
         'Feeds'
       );
       functions.replacePluginFiles();
-      functions.updateConfigFiles(this);
       console.log(yosay(`Congradulations!!! ${chalk.green('Feeds plugin')} was added successfully!!!`));
     } catch (err) {
       console.log(yosay(`${chalk.green('ERROR: ')} ${err}`));

@@ -45,7 +45,7 @@ module.exports = class extends Generator {
           }, 10000);
 
           setTimeout(function () {
-              functions.removeThemeDirectory();
+              commonFunctions.removePluginDirectory('components/theme/plugins/TermsAndConditions');
           }, 10000);
 
       } catch (err) {

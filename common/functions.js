@@ -3,8 +3,11 @@ const chalk = require('chalk');
 const process = require('process');
 const mkdirp = require('mkdirp');
 const fs = require('fs');
+const rimraf = require('rimraf');
+const fsExtra = require('fs-extra');
 
 const pluginsInfo = require('./pluginsInfo');
+
 
 /**
  * This module includes common functions, or functions which can be used in different subgenerators
@@ -75,10 +78,15 @@ module.exports = {
         var synopsisRequestsArray = [];
         var themeSelectorsArray = [];
         pluginsList.forEach(function(item) {
-            clientUrlsArray.push(pluginsInfo[item].clientsUrl);
-            pluginsArray.push(pluginsInfo[item].plugins);
-            synopsisRequestsArray.push(pluginsInfo[item].synopsisRequests);
-            themeSelectorsArray.push(pluginsInfo[item].themeSelectors);
+            if (pluginsInfo[item]) {
+                clientUrlsArray.push(pluginsInfo[item].clientsUrl);
+                pluginsArray.push(pluginsInfo[item].plugins);
+                synopsisRequestsArray.push(pluginsInfo[item].synopsisRequests);
+                themeSelectorsArray.push(pluginsInfo[item].themeSelectors);
+            } else {
+                console.log('WARNING!');
+                console.log('Information about plugin ' + item + ' is absent in file pluginInfo.js');
+            }
         });
 
         const configDirectoryPath = '../config';
@@ -118,4 +126,60 @@ module.exports = {
 
         return true;
     },
+
+    /**
+     * This function removes plugin directory
+     *
+     * @param {string} dirName
+     * @return {boolean}
+     */
+    removePluginDirectory: function (dirName) {
+        console.log(yosay(`${chalk.yellow('Step 3:')} Removing plugin directory...`));
+        rimraf(dirName, function (err) {
+            if (err) throw err;
+        });
+        return true;
+    },
+
+    /**
+     * This function removes all excess file from directory with plugins collection
+     *(it is necessary when we clone collection of Silver/Bronze/Carbon plugins from GitHub)
+     *
+     * @param {string} dirName
+     * @param {array}  excessFiles
+     * @return {boolean}
+     */
+    removeExcessFiles: function (dirName, excessFiles) {
+        console.log(yosay(`${chalk.yellow('Step 2:')} Removing excess files and directories...`));
+        process.chdir(dirName);
+        excessFiles.forEach(function (item) {
+            rimraf(item, function (err) {
+                if (err) throw err;
+            });
+        });
+        return true;
+    },
+
+    /**
+     * This function is used for extracting plugins directories form collection
+     * (it is necessary when we clone collection of Silver/Bronze/Carbon plugins from GitHub)
+     *
+     * @param {string} dirName
+     */
+    extractPlugins: function (dirName) {
+        console.log(yosay(`${chalk.yellow('Step 3:')} Extracting plugins directories...`));
+        const pluginsList = this.getPluginsInformation();
+        const srcPath = '../..';
+        process.chdir(srcPath);
+        pluginsList.forEach(function (item) {
+            fsExtra.moveSync(
+                dirName+item,
+                'plugins/'+item,
+                {
+                    overwrite: true
+                }
+            );
+        });
+        return true;
+    }
 };
