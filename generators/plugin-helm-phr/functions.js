@@ -40,6 +40,13 @@ module.exports = {
         if (err) throw err;
       }
     );
+    fsExtra.moveSync(
+      'components/theme/plugins/Plugin-Helm-PHR-Theme/assets/index.html',
+      './index.html', { overwrite: true },
+      function(err) {
+        if (err) throw err;
+      }
+    );
     return true;
   },
 
