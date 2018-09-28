@@ -63,73 +63,11 @@ module.exports = {
       }
     );
 
-    rimraf('components/theme/plugins/Feeds/__replace__', function (err) {
-      if (err) throw err;
-    });
-
-    return true;
-  },
-
-  /**
-   * This function updates config files
-   *
-   * @param el
-   * @return {boolean}
-   */
-  updateConfigFiles: function (el) {
-
-    console.log(yosay(`${chalk.yellow('Step 3:')} Config files updating...`));
-
-    const pluginsDirectoryPath = 'components/theme/plugins';
-    process.chdir(pluginsDirectoryPath);
-
-    const pluginsList = commonFunctions.getPluginsInformation();
-
-    var clientUrlsArray = [];
-    var pluginsArray = [];
-    var synopsisRequests = [];
-    var themeSelectors = [];
-    pluginsList.forEach(function (item) {
-      clientUrlsArray.push(pluginsInfo[item].clientsUrl);
-      pluginsArray.push(pluginsInfo[item].plugins);
-      synopsisRequests.push(pluginsInfo[item].synopsisRequests);
-      themeSelectors.push(pluginsInfo[item].themeSelectors);
-    });
-
-    const configDirectoryPath = '../config';
-    process.chdir(configDirectoryPath);
-
-    el.fs.copyTpl(
-      el.templatePath('clientUrls.txt'),
-      'clientUrls.js',
-      {
-        plugins: clientUrlsArray,
-      }
-    );
-
-    el.fs.copyTpl(
-      el.templatePath('plugins.txt'),
-      'plugins.js',
-      {
-        plugins: pluginsArray,
-      }
-    );
-
-    el.fs.copyTpl(
-      el.templatePath('synopsisRequests.txt'),
-      'synopsisRequests.js',
-      {
-        plugins: synopsisRequests,
-      }
-    );
-
-    el.fs.copyTpl(
-      el.templatePath('themeSelectors.txt'),
-      'themeSelectors.js',
-      {
-        plugins: themeSelectors,
-      }
-    );
+    setTimeout(function () {
+        rimraf('components/theme/plugins/Feeds/__replace__', function (err) {
+            if (err) throw err;
+        });
+    }, 5000);
 
     return true;
   },

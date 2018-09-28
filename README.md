@@ -9,11 +9,14 @@ If you want to install HelmPHR-version automatically, you should read **"Install
 # Content
 
 Current version of **Helm-PHR generator** includes four sub-generators:
-1) Core sub-generator (_yo helm-phr:core_);
-2) Silver plugin TopThreeThings sub-generator (_yo helm-phr:plugin-top-three-things_);
-3) Silver plugin Vaccinations sub-generator (_yo helm-phr:plugin-vaccinations_);
-4) Silver plugin Feeds sub-generator (_yo helm-phr:plugin-feeds_);
-5) Plugin HelmPHR-theme sub-generator (_yo helm-phr:plugin-helm-phr_).
+1) **Core** sub-generator (_yo helm-phr:core_);
+2) Silver plugin **TopThreeThings** sub-generator (_yo helm-phr:plugin-top-three-things_);
+3) Silver plugin **Vaccinations** sub-generator (_yo helm-phr:plugin-vaccinations_);
+4) Silver plugin **Feeds** sub-generator (_yo helm-phr:plugin-feeds_);
+5) Plugin **HelmPHR-theme** sub-generator (_yo helm-phr:plugin-helm-phr_);
+6) Plugin **UserTour** sub-generator (_yo helm-phr:plugin-user-tour_);
+7) Plugin **TermsAndConsition** sub-generator (_yo helm-phr:plugin-terms-and-conditions_);
+8) Sub-generator for configuration files updating (_yo helm-phr:update_);
 
 # Core
 
@@ -26,26 +29,25 @@ If any errors occur during generator work you should remove project directory an
 
 # Silver plugin TopThreeThings
 
-This sub-generator does the following automatically:
-1) Clone silver TopThreeThings plugin from GitHub to **plugins/** directory in the project;
-2) Update config files unite Core with plugin.
+This sub-generator clones silver TopThreeThings plugin from GitHub to **plugins/** directory in the project;
  
-If any errors occur during generator work you should remove **TopThreeThings/** directory and repeat generator command.
+If any errors occur during generator work you should remove **plugins/TopThreeThings/** directory and repeat generator command.
+
+If you want to remove TopThreeThings plugin you should remove **plugins/TopThreeThings/** directory and run command  **_yo helm-phr:update_**
 
 # Silver plugin Vaccinations
 
-This sub-generator does the following automatically:
-1) Clone silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
-2) Update config files unite Core with plugin.
+This sub-generator clones silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
  
-If any errors occur during generator work you should remove **Vaccinations/** directory and repeat generator command.
+If any errors occur during generator work you should remove **plugins/Vaccinations/** directory and repeat generator command.
+
+If you want to remove TopThreeThings plugin you should remove **plugins/Vaccinations/** directory and run command  **_yo helm-phr:update_**
 
 # Silver plugin Feeds
 
 This sub-generator does the following automatically:
 1) Clone silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
 2) Replace files from **replace/** directory to the required paths in the Core;
-3) Update config files unite Core with plugin.
 
 If any errors occur during generator work you should remove **Feeds/** directory and repeat generator command.
 
@@ -59,6 +61,32 @@ This sub-generator does the following automatically:
 5) Update links for images.
  
 If any errors occur during generator work you should remove project directory and repeat generator command.
+
+# Plugin UserTour
+
+This sub-generator does the following automatically:
+1) Clone UserTour plugin from GitHub to **plugins/** directory in the project;
+2) Overwrite **UserTour/** directory in **src/components/containers**;
+
+If any errors occur during generator work you should remove project directory and repeat generator command.
+
+# Plugin TermsAndConditions
+
+This sub-generator does the following automatically:
+1) Clone UserTour plugin from GitHub to **plugins/** directory in the project;
+2) Overwrite **TermsAndConditions/** directory in **src/components/containers/**;
+
+# Updating
+
+This sub-generator updates all configuration files, located in **src/components/theme/config/** :
+- clientUrls.js;
+- plugins.js;
+- synopsisRequests.js;
+- themeSelectors.js;
+
+These files provide relations between Core of project and new plugins.
+
+If any errors occur during generator work you should repeat generator command.
 
 # Environment
 
@@ -90,10 +118,13 @@ Go to the directory, where you will create your build, for example:
 Use Yeoman-generator to create your build automatically:
 ```
     $ yo helm-phr:core
-    $ yo helm-phr:plugin-top-three-things --force
-    $ yo helm-phr:plugin-vaccinations --force
-    $ yo helm-phr:plugin-feeds --force
+    $ yo helm-phr:plugin-top-three-things 
+    $ yo helm-phr:plugin-vaccinations 
+    $ yo helm-phr:plugin-feeds 
     $ yo helm-phr:plugin-helm-phr --force
+    $ yo helm-phr:plugin-user-tour
+    $ yo helm-phr:plugin-terms-and-conditions
+    $ yo helm-phr:update --force
 ```
 
 Attribute **--force** is used for overwriting config files by default.
