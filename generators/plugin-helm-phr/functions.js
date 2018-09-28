@@ -24,29 +24,15 @@ module.exports = {
     const srcPath = '../../..';
     process.chdir(srcPath);
 
-    fsExtra.moveSync(
-      'components/theme/plugins/Plugin-Helm-PHR-Theme/assets/images',
-      'assets/images',
-      { overwrite: true },
-      function(err) {
-        if (err) throw err;
-      }
-    );
-    fsExtra.moveSync(
-      'components/theme/plugins/Plugin-Helm-PHR-Theme/assets/themes',
-      'styles/themes',
-      { overwrite: true },
-      function(err) {
-        if (err) throw err;
-      }
-    );
-    fsExtra.moveSync(
-      'components/theme/plugins/Plugin-Helm-PHR-Theme/assets/index.html',
-      './index.html', { overwrite: true },
-      function(err) {
-        if (err) throw err;
-      }
-    );
+    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/images', 'assets/images', { overwrite: true }, function(err) {
+      if (err) throw err;
+    });
+    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/themes', 'styles/themes', { overwrite: true }, function(err) {
+      if (err) throw err;
+    });
+    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/index.html', './index.html', { overwrite: true }, function(err) {
+      if (err) throw err;
+    });
     return true;
   },
 
