@@ -1,6 +1,6 @@
 {
   "name": "generator-helm-phr",
-  "version": "1.3.1",
+  "version": "1.4.2",
   "description": "Generator for automatic creating HelmPHR-version",
   "homepage": "",
   "author": {
@@ -22,7 +22,7 @@
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo": "^0.20.1",
-    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-prettier": "^2.7.0",
     "husky": "^0.14.3",
     "jest": "^22.0.6",
     "lint-staged": "^6.1.1",

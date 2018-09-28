@@ -31,13 +31,17 @@ If any errors occur during generator work you should remove project directory an
 
 This sub-generator clones silver TopThreeThings plugin from GitHub to **plugins/** directory in the project;
  
-If any errors occur during generator work you should remove **TopThreeThings/** directory and repeat generator command.
+If any errors occur during generator work you should remove **plugins/TopThreeThings/** directory and repeat generator command.
+
+If you want to remove TopThreeThings plugin you should remove **plugins/TopThreeThings/** directory and run command  **_yo helm-phr:update_**
 
 # Silver plugin Vaccinations
 
 This sub-generator clones silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
  
-If any errors occur during generator work you should remove **Vaccinations/** directory and repeat generator command.
+If any errors occur during generator work you should remove **plugins/Vaccinations/** directory and repeat generator command.
+
+If you want to remove TopThreeThings plugin you should remove **plugins/Vaccinations/** directory and run command  **_yo helm-phr:update_**
 
 # Silver plugin Feeds
 
@@ -114,13 +118,13 @@ Go to the directory, where you will create your build, for example:
 Use Yeoman-generator to create your build automatically:
 ```
     $ yo helm-phr:core
-    $ yo helm-phr:plugin-top-three-things --force
-    $ yo helm-phr:plugin-vaccinations --force
-    $ yo helm-phr:plugin-feeds --force
+    $ yo helm-phr:plugin-top-three-things 
+    $ yo helm-phr:plugin-vaccinations 
+    $ yo helm-phr:plugin-feeds 
     $ yo helm-phr:plugin-helm-phr --force
     $ yo helm-phr:plugin-user-tour
     $ yo helm-phr:plugin-terms-and-conditions
-    $ yo helm-phr:update
+    $ yo helm-phr:update --force
 ```
 
 Attribute **--force** is used for overwriting config files by default.

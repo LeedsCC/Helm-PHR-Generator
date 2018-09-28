@@ -8,23 +8,38 @@ const rimraf = require('rimraf');
 const pluginsConfig = require('./pluginsConfig');
 
 module.exports = {
-
   /**
    * This function adds importing of theme to main CSS file
    *
    * @return {boolean}
    */
-  relocateContent: function () {
-    console.log(yosay(`${chalk.yellow('Step 2:')} Copying ${chalk.green('Images')} and ${chalk.green('Styles')} to required locations.`));
+  relocateContent: function() {
+    console.log(
+      yosay(
+        `${chalk.yellow('Step 2:')} Copying ${chalk.green('Images')} and ${chalk.green(
+          'Styles'
+        )} to required locations.`
+      )
+    );
     const srcPath = '../../..';
     process.chdir(srcPath);
 
-    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/images', 'assets/images', { overwrite: true }, function(err) {
-      if (err) throw err;
-    });
-    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/themes', 'styles/themes', { overwrite: true }, function(err) {
-      if (err) throw err;
-    });
+    fsExtra.moveSync(
+      'components/theme/plugins/Plugin-Helm-PHR-Theme/assets/images',
+      'assets/images',
+      { overwrite: true },
+      function(err) {
+        if (err) throw err;
+      }
+    );
+    fsExtra.moveSync(
+      'components/theme/plugins/Plugin-Helm-PHR-Theme/assets/themes',
+      'styles/themes',
+      { overwrite: true },
+      function(err) {
+        if (err) throw err;
+      }
+    );
     return true;
   },
 
@@ -33,7 +48,7 @@ module.exports = {
    *
    * @return {boolean}
    */
-  importThemeStyles: function () {
+  importThemeStyles: function() {
     console.log(yosay(`${chalk.yellow('Step 3:')} Including Helm-PHR CSS files...`));
     const newRow = "\n\n\n@import 'themes/index';";
     fs.appendFileSync('styles/main.scss', newRow, function(err) {
@@ -44,19 +59,16 @@ module.exports = {
     });
     return true;
   },
-    
+
   /**
    * This function switches theme from main to HelmPHR
    *
    * @param el
    * @return {boolean}
    */
-  switchHelmTheme: function (el) {
+  switchHelmTheme: function(el) {
     console.log(yosay(`${chalk.yellow('Step 4:')} Switching theme configuration...`));
-    fs.copyFileSync(
-      el.templatePath('themeConfigs.txt'),
-      'themes.config.js'
-    );
+    fs.copyFileSync(el.templatePath('themeConfigs.txt'), 'themes.config.js');
     return true;
   },
 
@@ -66,7 +78,7 @@ module.exports = {
    * @param el
    * @return {boolean}
    */
-  changeLogoImages: function (el) {
+  changeLogoImages: function(el) {
     console.log(yosay(`${chalk.yellow('Step 5:')} Changing images...`));
     fs.copyFileSync(
       el.templatePath('mainLogo.txt'),
@@ -85,19 +97,15 @@ module.exports = {
    * @param el
    * @return {boolean}
    */
-  changeBanners: function (el) {
+  changeBanners: function(el) {
     for (var i = 0, n = pluginsConfig.length; i < n; i++) {
       var item = pluginsConfig[i];
       if (!fs.exists('components/pages/' + item.name)) {
-        el.fs.copyTpl(
-          el.templatePath('bannersImage.txt'),
-          item.componentUrl,
-          {
-            bannerSrc: item.banner,
-            prevSrc: item.prev,
-            prevImport: item.prevImport,
-          }
-        );
+        el.fs.copyTpl(el.templatePath('bannersImage.txt'), item.componentUrl, {
+          bannerSrc: item.banner,
+          prevSrc: item.prev,
+          prevImport: item.prevImport
+        });
       }
     }
     return true;
@@ -109,7 +117,7 @@ module.exports = {
    * @param el
    * @return {boolean}
    */
-  changePrevImages: function (el) {
+  changePrevImages: function(el) {
     fs.copyFileSync(
       el.templatePath('prevImage.txt'),
       'components/pages/PatientsSummary/ImageSources.js'
@@ -122,9 +130,9 @@ module.exports = {
    *
    * @return {boolean}
    */
-  removeThemeDirectory: function () {
-    console.log(yosay(`${chalk.yellow('Step 6:')} Removing theme directory...`));
-    rimraf('components/theme/plugins/Plugin-Helm-PHR-Theme', function (err) {
+  removeThemeDirectory: function() {
+    console.log(yosay(`${chalk.yellow('Step 7:')} Removing theme directory...`));
+    rimraf('components/theme/plugins/Plugin-Helm-PHR-Theme', function(err) {
       if (err) throw err;
     });
     return true;
