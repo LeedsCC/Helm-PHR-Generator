@@ -8,15 +8,16 @@ If you want to install HelmPHR-version automatically, you should read **"Install
 
 # Content
 
-Current version of **Helm-PHR generator** includes four sub-generators:
+Current version of **Helm-PHR generator** includes nine sub-generators:
 1) **Core** sub-generator (_yo helm-phr:core_);
 2) Silver plugin **TopThreeThings** sub-generator (_yo helm-phr:plugin-top-three-things_);
 3) Silver plugin **Vaccinations** sub-generator (_yo helm-phr:plugin-vaccinations_);
 4) Silver plugin **Feeds** sub-generator (_yo helm-phr:plugin-feeds_);
-5) Plugin **HelmPHR-theme** sub-generator (_yo helm-phr:plugin-helm-phr_);
+5) Plugin **HelmPHR-theme** sub-generator (_yo helm-phr:theme-helm-phr_);
 6) Plugin **UserTour** sub-generator (_yo helm-phr:plugin-user-tour_);
 7) Plugin **TermsAndConsition** sub-generator (_yo helm-phr:plugin-terms-and-conditions_);
 8) Sub-generator for configuration files updating (_yo helm-phr:update_);
+9) Sub-generator for themes features updating (_yo helm-phr:update-features_);
 
 # Core
 
@@ -88,6 +89,16 @@ These files provide relations between Core of project and new plugins.
 
 If any errors occur during generator work you should repeat generator command.
 
+
+# Updating of features
+
+This sub-generator updates all files, which linked theme features with Core. These files are located in **src/components/theme/components/** :
+- ExtraPlugins.js (features, which are imported from **<App />** in Core);
+- TopHeaderButtons.js (features, which are imported from **<TopHeader />** in Core).
+
+If any errors occur during generator work you should repeat generator command.
+
+
 # Environment
 
 Before installing the Generator, you will need the following:
@@ -121,10 +132,11 @@ Use Yeoman-generator to create your build automatically:
     $ yo helm-phr:plugin-top-three-things 
     $ yo helm-phr:plugin-vaccinations 
     $ yo helm-phr:plugin-feeds 
-    $ yo helm-phr:plugin-helm-phr --force
     $ yo helm-phr:plugin-user-tour
     $ yo helm-phr:plugin-terms-and-conditions
+    $ yo helm-phr:theme-helm-phr --force
     $ yo helm-phr:update --force
+    $ yo helm-phr:update-features --force
 ```
 
 Attribute **--force** is used for overwriting config files by default.

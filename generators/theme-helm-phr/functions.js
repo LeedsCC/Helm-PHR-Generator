@@ -6,6 +6,7 @@ const fsExtra = require('fs-extra');
 const rimraf = require('rimraf');
 
 const pluginsConfig = require('./pluginsConfig');
+const commonFunctions = require('../../common/functions');
 
 module.exports = {
   /**
@@ -24,15 +25,31 @@ module.exports = {
     const srcPath = '../../..';
     process.chdir(srcPath);
 
-    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/images', 'assets/images', { overwrite: true }, function(err) {
+    fsExtra.moveSync(
+      'components/theme/plugins/Plugin-Helm-PHR-Theme/styles',
+      'styles',
+      {
+        overwrite: true
+      }
+    );
+
+    fsExtra.moveSync(
+      'components/theme/plugins/Plugin-Helm-PHR-Theme/assets/images',
+      'assets/images',
+      { overwrite: true },
+      function(err) {
+        if (err) throw err;
+      }
+    );
+
+    fsExtra.moveSync(
+      'components/theme/plugins/Plugin-Helm-PHR-Theme/index.html',
+      './index.html',
+      { overwrite: true },
+      function(err) {
       if (err) throw err;
     });
-    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/themes', 'styles/themes', { overwrite: true }, function(err) {
-      if (err) throw err;
-    });
-    fsExtra.moveSync('components/theme/plugins/Plugin-Helm-PHR-Theme/assets/index.html', './index.html', { overwrite: true }, function(err) {
-      if (err) throw err;
-    });
+
     return true;
   },
 
@@ -53,6 +70,15 @@ module.exports = {
     return true;
   },
 
+  addThemeStyles: function() {
+    console.log(yosay(`${chalk.yellow('Step 4:')} Including Helm-PHR CSS files...`));
+    const newRow = "\n\n\nimport '../styles/main.scss';";
+    fs.appendFileSync('config/styles.js', newRow, function (err) {
+      if (err) throw err;
+    });
+    return true;
+  },
+
   /**
    * This function switches theme from main to HelmPHR
    *
@@ -60,7 +86,7 @@ module.exports = {
    * @return {boolean}
    */
   switchHelmTheme: function(el) {
-    console.log(yosay(`${chalk.yellow('Step 4:')} Switching theme configuration...`));
+    console.log(yosay(`${chalk.yellow('Step 5:')} Switching theme configuration...`));
     fs.copyFileSync(el.templatePath('themeConfigs.txt'), 'themes.config.js');
     return true;
   },
@@ -72,7 +98,8 @@ module.exports = {
    * @return {boolean}
    */
   changeLogoImages: function(el) {
-    console.log(yosay(`${chalk.yellow('Step 5:')} Changing images...`));
+
+    console.log(yosay(`${chalk.yellow('Step 6:')} Changing images...`));
     fs.copyFileSync(
       el.templatePath('mainLogo.txt'),
       'components/presentational/MainLogo/LogoImage.js'
@@ -116,6 +143,25 @@ module.exports = {
       'components/pages/PatientsSummary/ImageSources.js'
     );
     return true;
+  },
+
+  /**
+   * This function updates context for all themes features
+   *
+   * @param el
+   */
+  updateThemeFeatures: function(el) {
+    const featuresList = commonFunctions.getFeaturesInformation('components/theme/components/features');
+    for (var i = 0, n = featuresList.length; i < n; i++) {
+      var feature = featuresList[i];
+
+      console.log('---------' + feature);
+
+      fs.copyFileSync(
+        el.templatePath('content/' + feature + '.txt'),
+        'components/theme/components/features/' + feature + '/content.js'
+      );
+    }
   },
 
   /**

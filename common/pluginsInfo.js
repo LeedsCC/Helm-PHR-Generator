@@ -132,8 +132,8 @@ module.exports = {
       url: 'feeds',
       import: 'feeds',
       pluginDirectory: '../plugins/Feeds/index',
-      imageImport: 'imgRSSFeeds',
-      imageSource: '../plugins/Feeds/ImageSource',
+      imageImport: null,
+      imageSource: null,
       forTest: null
     },
     synopsisRequests: {

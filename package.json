@@ -1,6 +1,6 @@
 {
   "name": "generator-helm-phr",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Generator for automatic creating HelmPHR-version",
   "homepage": "",
   "author": {
