@@ -1,3 +1,6 @@
+/**
+ * This module exports settings which are necessary for theme plugins
+ */
 module.exports = {
   ClinicalNotes: {
     clientsUrl: {
