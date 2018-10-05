@@ -32,7 +32,8 @@ module.exports = class extends Generator {
         'https://github.com/PulseTile-Plugins/Silver-Feeds-Plugin',
         'Feeds'
       );
-      functions.replacePluginFiles();
+      functions.updateComponents(this);
+
       console.log(yosay(`Congradulations!!! ${chalk.green('Feeds plugin')} was added successfully!!!`));
     } catch (err) {
       console.log(yosay(`${chalk.green('ERROR: ')} ${err}`));

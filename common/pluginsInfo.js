@@ -1,3 +1,6 @@
+/**
+ * This module exports settings which are necessary for theme plugins
+ */
 module.exports = {
   ClinicalNotes: {
     clientsUrl: {
@@ -132,15 +135,15 @@ module.exports = {
       url: 'feeds',
       import: 'feeds',
       pluginDirectory: '../plugins/Feeds/index',
-      imageImport: 'imgRSSFeeds',
-      imageSource: '../plugins/Feeds/ImageSource',
+      imageImport: null,
+      imageSource: null,
       forTest: null
     },
     synopsisRequests: {
       duckUrl: '../plugins/Feeds/ducks/fetch-feeds.duck',
       requestSynopsis: 'fetchFeedsRequest',
       requestDetails: null,
-      request: null,
+      request: 'fetchFeedsRequest',
       onMount: null,
       onMountDetails: null
     },

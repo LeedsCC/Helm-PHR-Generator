@@ -1,0 +1,21 @@
+import React from 'react';
+import './styles.scss';
+
+<% for (i = 0; i < features.length; i++) { %>
+    <% item = features[i] %>
+        import <%= item.name %> from '<%= item.url %>';
+<% } %>
+
+const TopHeaderButtons = props => {
+    return (
+        <span id="top-header-buttons">
+            <% for (i = 0; i < features.length; i++) { %>
+                <% item = features[i] %>
+                    < <%= item.name %> {...props} />
+            <% } %>
+        </span>
+    );
+};
+
+export default TopHeaderButtons;
+

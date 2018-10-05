@@ -2,9 +2,9 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const process = require('process');
 
-const functions = require('./functions');
+
+
 const commonFunctions = require('../../common/functions');
 
 module.exports = class extends Generator {
@@ -30,23 +30,22 @@ module.exports = class extends Generator {
   writing() {
       try {
 
-          commonFunctions.goToPluginsDirectory();
+          commonFunctions.goToFeaturesDirectory();
 
           commonFunctions.cloneProject(
               this,
               'Terms and Conditions plugin',
               'master',
-              'https://github.com/PulseTile-Plugins/Plugin-T-CsModal-HelmPHR',
+              'https://github.com/BogdanScherban/Plugin-T-CsModal-HelmPHR',
               'TermsAndConditions'
           );
 
-          setTimeout(function () {
-              functions.replacePluginFiles();
-          }, 10000);
+        setTimeout(function() {
+          const excessFiles = ['LICENSE', '.git', 'README.md'];
+          commonFunctions.removeExcessFiles('TermsAndConditions', excessFiles);
+        }, 10000);
 
-          setTimeout(function () {
-              commonFunctions.removePluginDirectory('components/theme/plugins/TermsAndConditions');
-          }, 10000);
+
 
       } catch (err) {
           console.log(yosay(`${chalk.green('ERROR: ')} ${err}`));

@@ -1,0 +1,19 @@
+import React from 'react';
+
+<% for (i = 0; i < features.length; i++) { %>
+    <% item = features[i] %>
+        import <%= item.name %> from '<%= item.url %>';
+<% } %>
+
+const ExtraPlugins = () => {
+    return (
+        <div>
+            <% for (i = 0; i < features.length; i++) { %>
+                <% item = features[i] %>
+                    < <%= item.name %> />
+            <% } %>
+        </div>
+    );
+};
+
+export default ExtraPlugins;

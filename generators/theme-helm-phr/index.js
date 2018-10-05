@@ -11,9 +11,12 @@ const functions = require('./functions');
 const commonFunctions = require('../../common/functions');
 
 module.exports = class extends Generator {
-
   prompting() {
-    this.log(yosay(`Welcome to the cool ${chalk.red('generator-plugin-helm-phr-theme')} generator!`));
+    this.log(
+      yosay(
+        `Welcome to the cool ${chalk.red('generator-plugin-helm-phr-theme')} generator!`
+      )
+    );
     const prompts = [
       {
         type: 'confirm',
@@ -29,7 +32,6 @@ module.exports = class extends Generator {
 
   writing() {
     try {
-
       commonFunctions.goToPluginsDirectory();
 
       commonFunctions.cloneProject(
@@ -41,19 +43,34 @@ module.exports = class extends Generator {
       );
 
       functions.relocateContent();
+      functions.updateThemeFeatures(this);
       functions.importThemeStyles();
+      functions.addThemeStyles();
       functions.switchHelmTheme(this);
       functions.changeLogoImages(this);
       functions.changeBanners(this);
       functions.changePrevImages(this);
       functions.removeThemeDirectory();
 
-      console.log(yosay(`Congradulations!!! ${chalk.green('HelpPHR-theme plugin')} was added successfully!!!`));
-      console.log(yosay(`If you want to build the project run: ${chalk.green('npm run build')}`));
-
+      console.log(
+        yosay(
+          `Congradulations!!! ${chalk.green(
+            'HelpPHR-theme plugin'
+          )} was added successfully!!!`
+        )
+      );
+      console.log(
+        yosay(`If you want to build the project run: ${chalk.green('npm run build')}`)
+      );
     } catch (err) {
       console.log(yosay(`${chalk.green('ERROR: ')} ${err}`));
-      console.log(yosay(`Please, remove plugin directory ${chalk.green('Plugin-Helm-PHR-Theme')} and repeat installing.`));
+      console.log(
+        yosay(
+          `Please, remove plugin directory ${chalk.green(
+            'Plugin-Helm-PHR-Theme'
+          )} and repeat installing.`
+        )
+      );
     }
   }
 };
