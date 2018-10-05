@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const process = require('process');
 
-const functions = require('./functions');
+
 const commonFunctions = require('../../common/functions');
 
 module.exports = class extends Generator {
@@ -24,7 +24,7 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.props = props;
-    });
+  });
   }
 
   writing() {
@@ -35,23 +35,18 @@ module.exports = class extends Generator {
           this.spawnCommandSync('npm', ['i', 'react-joyride@next']);
           process.chdir('..');
 
-          commonFunctions.goToPluginsDirectory();
+          commonFunctions.goToFeaturesDirectory();
           commonFunctions.cloneProject(
               this,
               'UserTour plugin',
               'master',
               'https://github.com/PulseTile-Plugins/Plugin-React-UserTour',
-              'Plugin-React-UserTour'
+              'UserTour'
           );
-
-
-          setTimeout(function () {
-              functions.replacePluginFiles();
-          }, 10000);
-
-          setTimeout(function () {
-              functions.removeThemeDirectory();
-          }, 10000);
+        setTimeout(function() {
+          const excessFiles = ['LICENSE', '.git', 'README.md'];
+          commonFunctions.removeExcessFiles('UserTour', excessFiles);
+        }, 10000);
 
       } catch (err) {
           console.log(yosay(`${chalk.green('ERROR: ')} ${err}`));
