@@ -14,8 +14,8 @@ Current version of **Helm-PHR generator** includes nine sub-generators:
 3) Silver plugin **Vaccinations** sub-generator (_yo helm-phr:plugin-vaccinations_);
 4) Silver plugin **Feeds** sub-generator (_yo helm-phr:plugin-feeds_);
 5) Plugin **HelmPHR-theme** sub-generator (_yo helm-phr:theme-helm-phr_);
-6) Plugin **UserTour** sub-generator (_yo helm-phr:plugin-user-tour_);
-7) Plugin **TermsAndConsition** sub-generator (_yo helm-phr:plugin-terms-and-conditions_);
+6) Feature **UserTour** sub-generator (_yo helm-phr:feature-user-tour_);
+7) Feature **TermsAndConsition** sub-generator (_yo helm-phr:feature-terms-and-conditions_);
 8) Sub-generator for configuration files updating (_yo helm-phr:update_);
 9) Sub-generator for themes features updating (_yo helm-phr:update-features_);
 
@@ -63,18 +63,18 @@ This sub-generator does the following automatically:
  
 If any errors occur during generator work you should remove project directory and repeat generator command.
 
-# Plugin UserTour
+# Feature UserTour
 
 This sub-generator does the following automatically:
-1) Clone UserTour plugin from GitHub to **plugins/** directory in the project;
+1) Clone UserTour feature from GitHub to **plugins/** directory in the project;
 2) Overwrite **UserTour/** directory in **src/components/containers**;
 
 If any errors occur during generator work you should remove project directory and repeat generator command.
 
-# Plugin TermsAndConditions
+# Feature TermsAndConditions
 
 This sub-generator does the following automatically:
-1) Clone UserTour plugin from GitHub to **plugins/** directory in the project;
+1) Clone UserTour feature from GitHub to **plugins/** directory in the project;
 2) Overwrite **TermsAndConditions/** directory in **src/components/containers/**;
 
 # Updating
@@ -132,8 +132,8 @@ Use Yeoman-generator to create your build automatically:
     $ yo helm-phr:plugin-top-three-things 
     $ yo helm-phr:plugin-vaccinations 
     $ yo helm-phr:plugin-feeds 
-    $ yo helm-phr:plugin-user-tour
-    $ yo helm-phr:plugin-terms-and-conditions
+    $ yo helm-phr:feature-user-tour
+    $ yo helm-phr:feature-terms-and-conditions
     $ yo helm-phr:theme-helm-phr --force
     $ yo helm-phr:update --force
     $ yo helm-phr:update-features --force
