@@ -143,7 +143,7 @@ module.exports = {
       duckUrl: '../plugins/Feeds/ducks/fetch-feeds.duck',
       requestSynopsis: 'fetchFeedsRequest',
       requestDetails: null,
-      request: null,
+      request: 'fetchFeedsRequest',
       onMount: null,
       onMountDetails: null
     },

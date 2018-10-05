@@ -4,6 +4,7 @@ const process = require('process');
 const mkdirp = require('mkdirp');
 
 module.exports = {
+
   /**
    * This function updates Node modules of Core
    *
@@ -29,7 +30,7 @@ module.exports = {
   },
 
   /**
-   * This function creates directory for theme features
+   * This function creates directory for features
    *
    * @return {boolean}
    */

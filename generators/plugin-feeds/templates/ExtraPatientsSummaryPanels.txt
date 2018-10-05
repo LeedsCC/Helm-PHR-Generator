@@ -1,0 +1,19 @@
+import React from 'react';
+
+import FeedsPanelList from '../plugins/Feeds/FeedsPanelList';
+
+/**
+ * This component returns list of panels, which creates separately (like Feeds-panels)
+ *
+ * @param props
+ * @return {XML}
+ */
+const ExtraPatientsSummarySelectors = props => {
+    return (
+        <span>
+            <FeedsPanelList {...props} />
+        </span>
+    )
+};
+
+export default ExtraPatientsSummarySelectors;
