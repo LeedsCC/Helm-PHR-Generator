@@ -13,6 +13,7 @@ export const themeConfigs = {
     isShowPluginsBigBanner: true,
     patientsSummaryPageName: 'Home',
     patientsSummaryHasPreviewSettings: true,
+    patientSummaryTopLeftButtonBehaviour: 'home',
     sidebarConfigIsVisible: {
       default: false,
       'patients-summary': true,
