@@ -1,7 +1,7 @@
 export const themeConfigs = {
   isLeedsPHRTheme: true,
     topHeader: {
-      showBackButton: true,
+      showBackButton: false,
       showHomeButton: true,
       showNotifications: false,
       showQuestions: true,
