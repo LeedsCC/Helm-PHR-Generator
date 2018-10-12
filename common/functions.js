@@ -6,7 +6,10 @@ const fs = require('fs');
 const rimraf = require('rimraf');
 const fsExtra = require('fs-extra');
 
-const pluginsInfo = require('./pluginsInfo');
+const pluginsInfo = require('./plugins/pluginsInfo');
+const recordsOfTableInfo = require('./plugins/recordsOfTable/pluginsInfo');
+const extraPluginsInfo = require('./components/extraPluginsInfo');
+const topHeaderButtonsInfo = require('./components/topHeaderButtonsInfo');
 
 /**
  * This module includes common functions, or functions which can be used in different subgenerators
@@ -28,6 +31,16 @@ module.exports = {
    */
   goToFeaturesDirectory: function() {
     const themeDirectoryPath = 'PulseTile-React-Core/src/components/theme/components/features';
+    process.chdir(themeDirectoryPath);
+    return true;
+  },
+
+  /**
+   *
+    * @return {boolean}
+   */
+  goToComponentsDirectory: function() {
+    const themeDirectoryPath = '../../components/features';
     process.chdir(themeDirectoryPath);
     return true;
   },
@@ -74,7 +87,7 @@ module.exports = {
    */
   getFeaturesInformation: function(dirName = null) {
     const featuresList = [];
-    var dir = dirName ? dirName : process.cwd();
+    let dir = dirName ? dirName : process.cwd();
     fs.readdirSync(dir).forEach(function(file) {
       featuresList.push(file);
     });
@@ -86,8 +99,8 @@ module.exports = {
    *
    * @return {boolean}
    */
-  updateConfigFiles: function(el) {
-    console.log(yosay(`${chalk.yellow('Step 3:')} Config files updating...`));
+  updateConfigFiles: function(el, step) {
+    console.log(yosay(`${chalk.yellow('Step ' + step + ':')} Config files updating...`));
 
     const pluginsList = this.getPluginsInformation();
 
@@ -112,23 +125,68 @@ module.exports = {
     const configDirectoryPath = '../config';
     process.chdir(configDirectoryPath);
 
-    el.fs.copyTpl(el.templatePath('clientUrls.txt'), 'clientUrls.js', {
+    el.fs.copyTpl(el.templatePath('plugins/clientUrls.txt'), 'clientUrls.js', {
       plugins: clientUrlsArray
     });
 
-    el.fs.copyTpl(el.templatePath('plugins.txt'), 'plugins.js', {
+    el.fs.copyTpl(el.templatePath('plugins/plugins.txt'), 'plugins.js', {
       plugins: pluginsArray
     });
 
-    el.fs.copyTpl(el.templatePath('synopsisRequests.txt'), 'synopsisRequests.js', {
+    el.fs.copyTpl(el.templatePath('plugins/synopsisRequests.txt'), 'synopsisRequests.js', {
       plugins: synopsisRequestsArray
     });
 
-    el.fs.copyTpl(el.templatePath('themeSelectors.txt'), 'themeSelectors.js', {
+    el.fs.copyTpl(el.templatePath('plugins/themeSelectors.txt'), 'themeSelectors.js', {
       plugins: themeSelectorsArray
     });
 
     return true;
+  },
+
+  /**
+   *
+   */
+  updateRecordsOfTable: function (el, step) {
+    console.log(yosay(`${chalk.yellow('Step ' + step + ':')} Config files updating for RecordsOfTable...`));
+
+    const pluginsDirectoryPath = '../plugins';
+    process.chdir(pluginsDirectoryPath);
+
+    const pluginsList = this.getPluginsInformation();
+
+    const recordsOfTableDirectoryPath = '../config/recordsOfTable';
+    process.chdir(recordsOfTableDirectoryPath);
+
+    var recordsOfTableArray = [];
+    var recordsOfTableDetailsArray = [];
+    var recordsOfTableFunctionsArray = [];
+    var recordsOfTablePopoverArray = [];
+    pluginsList.forEach(function(item) {
+      if (recordsOfTableInfo[item]) {
+        recordsOfTableArray.push(recordsOfTableInfo[item].recordsOfTable);
+        recordsOfTableDetailsArray.push(recordsOfTableInfo[item].recordsOfTableDetails);
+        recordsOfTableFunctionsArray.push(recordsOfTableInfo[item].recordsOfTableFunctions);
+        recordsOfTablePopoverArray.push(recordsOfTableInfo[item].recordsOfTablePopover);
+      }
+    });
+
+    el.fs.copyTpl(el.templatePath('plugins/recordsOfTable/recordsOfTable.txt'), 'recordsOfTable.js', {
+      plugins: recordsOfTableArray
+    });
+
+    el.fs.copyTpl(el.templatePath('plugins/recordsOfTable/recordsOfTableDetails.txt'), 'recordsOfTableDetails.js', {
+      plugins: recordsOfTableDetailsArray
+    });
+
+    el.fs.copyTpl(el.templatePath('plugins/recordsOfTable/recordsOfTableFunctions.txt'), 'recordsOfTableFunctions.js', {
+      plugins: recordsOfTableFunctionsArray
+    });
+
+    el.fs.copyTpl(el.templatePath('plugins/recordsOfTable/recordsOfTablePopover.txt'), 'recordsOfTablePopover.js', {
+      plugins: recordsOfTablePopoverArray
+    });
+
   },
 
   /**
@@ -176,5 +234,42 @@ module.exports = {
       });
     });
     return true;
-  }
+  },
+
+  /**
+   * This function updates features config files
+   *
+   * @return {boolean}
+   */
+  updateFeaturesConfigFiles: function(el) {
+    console.log(yosay(`${chalk.yellow('Step 4:')} Features files updating...`));
+
+    const featuresList = this.getFeaturesInformation();
+    var extraPluginsArray = [];
+    var topHeaderButtonsArray = [];
+    featuresList.forEach(function(item) {
+      if (extraPluginsInfo[item]) {
+        extraPluginsArray.push(extraPluginsInfo[item].extraPlugins);
+      }
+      if (topHeaderButtonsInfo[item]) {
+        topHeaderButtonsArray.push(topHeaderButtonsInfo[item].topHeaderButtons);
+      } else {
+        console.log('WARNING!');
+        console.log('Information about features ' + item + ' is absent in file extraPlaginsInfo.js or in file topHeaderButtonsInfo');
+      }
+    });
+
+    const configDirectoryPath = '../../components';
+    process.chdir(configDirectoryPath);
+
+    el.fs.copyTpl(el.templatePath('features/extraPlugins.txt'), 'ExtraPlugins.js', {
+      features: extraPluginsArray
+    });
+
+    el.fs.copyTpl(el.templatePath('features/topHeaderButtons.txt'), 'TopHeaderButtons.js', {
+      features: topHeaderButtonsArray
+    });
+
+    return true;
+  },
 };

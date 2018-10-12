@@ -59,9 +59,11 @@ const generateArrayOnMount = (requestArray) => {
 
 <% for (i = 0; i < plugins.length; i++) { %>
 <% item = plugins[i] %>
-<% if (item.onMount && item.onMountDetails) { %>
-export const <%= item.onMount %> = (generateFetchListOnMount('<%= item.request %>'));
-export const <%= item.onMountDetails %> = (generateFetchDetailOnMount('<%= item.requestDetails %>'));
+<% if (item.onMount) { %>
+    export const <%= item.onMount %> = (generateFetchListOnMount('<%= item.request %>'));
+<% } %>
+<% if (item.onMountDetails) { %>
+    export const <%= item.onMountDetails %> = (generateFetchDetailOnMount('<%= item.requestDetails %>'));
 <% } %>
 <% } %>
 

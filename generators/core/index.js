@@ -39,7 +39,7 @@ module.exports = class extends Generator {
       commonFunctions.cloneProject(
         this,
         'PulseTile-Core',
-        'develop-without-styles2',
+        'develop',
         'https://github.com/PulseTile/PulseTile-React-Core',
         'PulseTile-React-Core'
       );
