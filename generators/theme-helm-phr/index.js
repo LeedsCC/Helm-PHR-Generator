@@ -46,7 +46,6 @@ module.exports = class extends Generator {
       functions.updateThemeFeatures(this);
       functions.importThemeStyles();
       functions.addThemeStyles();
-      functions.switchHelmTheme(this);
       functions.changeLogoImages(this);
       functions.changeBanners(this);
       functions.changePrevImages(this);
