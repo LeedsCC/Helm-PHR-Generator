@@ -79,17 +79,6 @@ module.exports = {
     return true;
   },
 
-  /**
-   * This function switches theme from main to HelmPHR
-   *
-   * @param el
-   * @return {boolean}
-   */
-  switchHelmTheme: function(el) {
-    console.log(yosay(`${chalk.yellow('Step 5:')} Switching theme configuration...`));
-    fs.copyFileSync(el.templatePath('themeConfigs.txt'), 'themes.config.js');
-    return true;
-  },
 
   /**
    * This function update logo images urls
@@ -154,9 +143,6 @@ module.exports = {
     const featuresList = commonFunctions.getFeaturesInformation('components/theme/components/features');
     for (var i = 0, n = featuresList.length; i < n; i++) {
       var feature = featuresList[i];
-
-      console.log('---------' + feature);
-
       fs.copyFileSync(
         el.templatePath('content/' + feature + '.txt'),
         'components/theme/components/features/' + feature + '/content.js'

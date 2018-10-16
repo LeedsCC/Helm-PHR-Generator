@@ -36,7 +36,7 @@ module.exports = class extends Generator {
               this,
               'Terms and Conditions plugin',
               'master',
-              'https://github.com/BogdanScherban/Plugin-T-CsModal-HelmPHR',
+              'https://github.com/PulseTile-Plugins/Plugin-T-CsModal-HelmPHR',
               'TermsAndConditions'
           );
 
