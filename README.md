@@ -15,8 +15,7 @@ Current version of **Helm-PHR generator** includes following sub-generators:
 4) Silver plugin **Feeds** sub-generator (_yo helm-phr:plugin-feeds_);
 5) Theme **HelmPHR-theme** sub-generator (_yo helm-phr:theme-helm-phr_);
 6) Feature **UserTour** sub-generator (_yo helm-phr:feature-user-tour_);
-7) Feature **TermsAndConsition** sub-generator (_yo helm-phr:feature-terms-and-conditions_);
-8) Sub-generator for configuration files updating (_yo helm-phr:update_);
+7) Sub-generator for configuration files updating (_yo helm-phr:update_);
 
 # Core
 
@@ -62,6 +61,7 @@ This sub-generator does the following automatically:
  
 If any errors occur during generator work you should remove project directory and repeat generator command.
 
+
 # Feature UserTour
 
 This sub-generator does the following automatically:
@@ -70,11 +70,6 @@ This sub-generator does the following automatically:
 
 If any errors occur during generator work you should remove project directory and repeat generator command.
 
-# Feature TermsAndConditions
-
-This sub-generator does the following automatically:
-1) Clone UserTour feature from GitHub to **plugins/** directory in the project;
-2) Overwrite **TermsAndConditions/** directory in **src/components/containers/**;
 
 # Updating
 
@@ -123,7 +118,6 @@ Use Yeoman-generator to create your build automatically:
     $ yo helm-phr:plugin-vaccinations 
     $ yo helm-phr:plugin-feeds 
     $ yo helm-phr:feature-user-tour
-    $ yo helm-phr:feature-terms-and-conditions
     $ yo helm-phr:theme-helm-phr --force
     $ yo helm-phr:update --theme=helm --force
 ```
