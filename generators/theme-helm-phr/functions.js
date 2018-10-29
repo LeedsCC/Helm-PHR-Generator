@@ -119,6 +119,21 @@ module.exports = {
     }
     return true;
   },
+  
+  /**
+   * This function updates the main spinner to include health tips (taken from https://www.nhs.uk/live-well/healthy-body/)
+   * Also includes a progress bar
+   *
+   * @param el
+   * @return {boolean}
+   */
+  changeMainSpinner: function(el) {
+    fs.copyFileSync(
+      el.templatePath('mainSpinner.txt'),
+      'components/containers/MainSpinner/MainSpinner.js'
+    );
+    return true;
+  },
 
   /**
    * This function update preview images urls
