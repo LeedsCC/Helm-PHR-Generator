@@ -103,7 +103,6 @@ const MainSpinner = (props) => {
 
       <div className="progress">
         <div className="progress-bar progress-bar-striped active" role="progressbar" style={{width: 0 + '%'}}>
-          <span className="sr-only">45% Complete</span>
         </div>
       </div>
 
