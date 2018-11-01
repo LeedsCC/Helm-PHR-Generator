@@ -1,0 +1,19 @@
+import React from 'react';
+
+import FeedsCheckboxPanel from '../plugins/Feeds/FeedsCheckboxPanel';
+
+/**
+ * This component returns list of selectors, which creates separately (like Feeds-selectors)
+ *
+ * @param props
+ * @return {XML}
+ */
+const ExtraPatientsSummarySelectors = props => {
+    return (
+        <div>
+            <FeedsCheckboxPanel {...props} />
+        </div>
+    )
+};
+
+export default ExtraPatientsSummarySelectors;

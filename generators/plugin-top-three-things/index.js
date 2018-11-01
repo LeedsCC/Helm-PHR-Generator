@@ -29,9 +29,7 @@ module.exports = class extends Generator {
 
   writing() {
     try {
-
       commonFunctions.goToPluginsDirectory();
-
       commonFunctions.cloneProject(
         this,
         'TopThreeThings plugin',
@@ -39,11 +37,7 @@ module.exports = class extends Generator {
         'https://github.com/PulseTile-Plugins/Silver-Plugin-TopThreeThings',
         'TopThreeThings'
       );
-
-      commonFunctions.updateConfigFiles(this);
-
       console.log(yosay(`Congradulations!!! ${chalk.green('TopThreeThings plugin')} was added successfully!!!`));
-
     } catch (err) {
       console.log(yosay(`${chalk.green('ERROR: ')} ${err}`));
       console.log(yosay(`Please, remove plugin directory ${chalk.green('TopThreeThings')} and repeat installing.`));
