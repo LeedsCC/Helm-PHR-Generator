@@ -1,6 +1,6 @@
 {
   "name": "generator-helm-phr",
-  "version": "1.8.2",
+  "version": "1.8.4",
   "description": "Generator for automatic creating HelmPHR-version",
   "homepage": "",
   "author": {
@@ -85,7 +85,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RippleOSI/Helm-PHR-Generator/tree/version-tour"
+    "url": "https://github.com/RippleOSI/Helm-PHR-Generator"
   },
   "license": "Apache-2.0"
 }
