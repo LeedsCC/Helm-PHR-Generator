@@ -49,6 +49,7 @@ module.exports = class extends Generator {
       functions.changeLogoImages(this);
       functions.changeBanners(this);
       functions.changePrevImages(this);
+      functions.changeMainSpinner(this);
       functions.removeThemeDirectory();
 
       console.log(
