@@ -30,6 +30,8 @@ export const themeConfigs = {
     isShowUserPhoto: false,
     isShowUserProfileSettings: false,
     isShowUserProfileSpecification: false,
+    isShowPagesBannersImages: false,
+    isShowPagesSynopsisImages: false,
     patientsSummaryTitles: {
       'diagnoses': 'Problems / Issues',
       'medications': 'Medications',
