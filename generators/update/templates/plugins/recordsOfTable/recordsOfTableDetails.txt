@@ -1,0 +1,71 @@
+import { get } from 'lodash';
+import { createSelector } from 'reselect';
+
+<% for (i = 0; i < plugins.length; i++) { %>
+    <% item = plugins[i] %>
+    <% if (item.fetchList && item.fetchListURL) { %>
+import { <%= item.fetchList %> } from '<%= item.fetchListURL %>';
+import { <%= item.selector %> } from '<%= item.selectorURL %>';
+    <% } %>
+<% } %>
+
+/**
+ * This object will be added to the Core recordsOfTablePopover actions
+ */
+export const themeDetailsAction = {
+<% for (i = 0; i < plugins.length; i++) { %>
+<% item = plugins[i] %>
+    <% if (item.fetchList) { %>
+    <%= item.fetchList %>,
+    <% } %>
+<% } %>
+};
+
+/**
+ * This object will be added to the Core recordsOfTablePopover selectors
+ */
+<% if (plugins.length > 0) { %>
+export const themeDetailsSelector = createSelector(
+    <% for (i = 0; i < plugins.length; i++) { %>
+    <% item = plugins[i] %>
+        <% if (item.selector) { %>
+            <%= item.selector %>,
+        <% } %>
+    <% } %>
+    (
+    <% for (i = 0; i < plugins.length; i++) { %>
+        <% item = plugins[i] %>
+            <% if (item.plugin) { %>
+                <%= item.plugin %>,
+            <% } %>
+    <% } %>
+    ) => {
+        return {
+            <% for (i = 0; i < plugins.length; i++) { %>
+                <% item = plugins[i] %>
+                    <% if (item.plugin && item.stateName) { %>
+                        <%= item.stateName %>: get(<%= item.plugin %>, '<%= item.stateName %>', {}),
+                    <% } %>
+            <% } %>
+        };
+    }
+);
+<% } else { %>
+export const themeSelector = null;
+<% } %>
+
+/**
+ * This object will be added to the Core recordsOfTablePopover typesRecords
+ */
+export const themeTypesRecordsDetails = {
+<% for (i = 0; i < plugins.length; i++) { %>
+<% item = plugins[i] %>
+    <% if (item.plugin) { %>
+        <%= item.plugin %>: {
+            title: '<%= item.title %>',
+            fetchDetail: '<%= item.fetchList %>',
+            stateName: '<%= item.stateName %>',
+        },
+    <% } %>
+<% } %>
+};
