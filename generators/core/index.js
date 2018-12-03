@@ -30,7 +30,7 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.props = props;
-    });
+  });
   }
 
   writing() {
@@ -46,6 +46,7 @@ module.exports = class extends Generator {
 
       functions.updateNpmModules(this);
       functions.createPluginsDirectory();
+      functions.createFeaturesDirectory();
 
       console.log(yosay(`Congradulations!!! ${chalk.green('PulseTile-Core')} was installed successfully!!!`));
 

@@ -1,0 +1,21 @@
+<% for (i = 0; i < plugins.length; i++) { %>
+    <% item = plugins[i] %>
+    <% if (item.functionName && item.functionURL) { %>
+import { <%= item.functionName %> } from '<%= item.functionURL %>';
+    <% } %>
+<% } %>
+
+
+/**
+ * This is container for records settings functions
+ *
+ * @type {object}
+ */
+export const themeFunctions = {
+<% for (i = 0; i < plugins.length; i++) { %>
+    <% item = plugins[i] %>
+    <% if (item.functionName) { %>
+        <%= item.functionName %>: <%= item.functionName %>,
+    <% } %>
+<% } %>
+};

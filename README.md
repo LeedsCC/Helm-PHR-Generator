@@ -1,77 +1,75 @@
 # General infornation
 
-This generator is used for automatic creation build for HelmPHR-version. 
+The Helm PHR Generator comprises of three key Ripple Foundation supported components namely, PulseTile, QEWD.js and EtherCIS. Each component is developed independently and therefore has its own development and build process. This Generator takes the PulseTile component (React.js version) and gets it ready for deployment within the Helm PHR environment. 
 
-It based on **Yeoman** technology. This tool gives possibility to create new project from modules, which are located in the separate GitHub repositories. More information about Yeoman you can found here: http://yeoman.io/
+Any version of PulseTile-React project, such as this Helm PHR version, consists of two main parts: Core framework and Non-Core plugins, including themes (i.e. styles and images).
 
-If you want to install HelmPHR-version automatically, you should read **"Installing"** below.
+This generator allows us to change / add / remove select plugins and automatically create the PulseTile Showcase build without changing the PulseTile React.js core framework. 
 
-# Content
+For this automatic creation of the build, a generator based on Yeoman technology is used. 
+This tool gives the possibility to create new builds from modules, that are located in the separate GitHub repositories. 
 
-Current version of **Helm-PHR generator** includes four sub-generators:
-1) Core sub-generator (_yo helm-phr:core_);
-2) Silver plugin TopThreeThings sub-generator (_yo helm-phr:plugin-top-three-things_);
-3) Silver plugin Vaccinations sub-generator (_yo helm-phr:plugin-vaccinations_);
-4) Silver plugin Feeds sub-generator (_yo helm-phr:plugin-feeds_);
-5) Plugin HelmPHR-theme sub-generator (_yo helm-phr:plugin-helm-phr_).
+To learn more about Yeoman, please see http://yeoman.io/
 
-# Core
 
-This sub-generator does the following automatically:
-1) Clone PulseTile-Core version from GitHub;
-2) Install all required Node-modules;
-3) Create the directory for non-core plugins.
+# The components used in the Helm PHR Generator
+
+The current version of Helm PHR Generator includes following sub-generators:
+
+1) Core sub-generator;
+2) Non-core plugins sub-generators:
+    * for TopThreeThings plugin;
+    * for Vaccinations plugin;
+    * for Feeds plugin;
+3) Non-core features sub-generators:
+    * for Terms and Conditions feature plugin;
+4) Theme Helm PHR sub-generator;
+5) Sub-generator for configuration files updating.
+
+You can see how it works on the scheme below:
+
+![alt text](https://github.com/LeedsCC/Helm-PHR-Generator/blob/kuvakina-patch-1/Helm-gen.png)
+
+# How it works
+
+We have separate GitHub repositories with Core (all core plugins and features), Non-Core plugins and features, and Theme that are then imported.
+
+When the Helm PHR version is built, Generator makes following steps automatically:
+
+1) Clone latest version of Core from GitHub and install all required modules and libraries: 
+ _$ yo helm-phr:core_
+
+2) Clone all Non-Core plugins from GitHub and add it to Non-Core component storage:  
+_$ yo helm-phr:plugin-top-three-things_  
+_$ yo helm-phr:plugin-vaccinations_  
+_$ yo helm-phr:plugin-feeds_  
+
+3) Clone other features from GitHub and add it to the Non-Core component storage:  
+_$ yo helm-phr:feature-user-tour_  
+
+4) Clone Helm-PHR-theme from GitHub and add it into your build:  
+_$ yo helm-phr:theme-helm-phr --force_  
+
+5) Update the config files which unite Core with Non-Core component storage:  
+_$ yo helm-phr:update --theme=helm --force_  
+
+6) Create the build:  
+_$ npm run build_  
  
-If any errors occur during generator work you should remove project directory and repeat generator command.
+After these steps have taken place, the built Helm PHR version is ready for use. 
 
-# Silver plugin TopThreeThings
-
-This sub-generator does the following automatically:
-1) Clone silver TopThreeThings plugin from GitHub to **plugins/** directory in the project;
-2) Update config files unite Core with plugin.
- 
-If any errors occur during generator work you should remove **TopThreeThings/** directory and repeat generator command.
-
-# Silver plugin Vaccinations
-
-This sub-generator does the following automatically:
-1) Clone silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
-2) Update config files unite Core with plugin.
- 
-If any errors occur during generator work you should remove **Vaccinations/** directory and repeat generator command.
-
-# Silver plugin Feeds
-
-This sub-generator does the following automatically:
-1) Clone silver Vaccinations plugin from GitHub to **plugins/** directory in the project;
-2) Replace files from **replace/** directory to the required paths in the Core;
-3) Update config files unite Core with plugin.
-
-If any errors occur during generator work you should remove **Feeds/** directory and repeat generator command.
-
-# Plugin for HelmPHR-theme
-
-This sub-generator does the following automatically:
-1) Clone silver HelmPHR-theme plugin from GitHub to **plugins/** directory in the project;
-2) Relocate **images/** directory to **asset/images/**;
-3) Relocate **theme/** directory to **styles/theme/**;
-4) Change theme from Main to HelmPHR;
-5) Update links for images.
- 
-If any errors occur during generator work you should remove project directory and repeat generator command.
-
-# Environment
+**Please see more detailed command line instructions below.** 
 
 Before installing the Generator, you will need the following:
-- Node.js 6 or higher
-- npm 3 or higher (which comes bundled with Node)
-- Git
+* Node.js 6 or higher
+* npm 3 or higher (which comes bundled with Node)
+* Git
 
-You can check current version by:
+You can check current version by: 
 ```
-    $ node --version
-    $ npm --version
-    $ git --version
+   $ node --version  
+   $ npm --version  
+   $ git --version  
 ```
 
 # Installing
@@ -90,11 +88,14 @@ Go to the directory, where you will create your build, for example:
 Use Yeoman-generator to create your build automatically:
 ```
     $ yo helm-phr:core
-    $ yo helm-phr:plugin-top-three-things --force
-    $ yo helm-phr:plugin-vaccinations --force
-    $ yo helm-phr:plugin-feeds --force
-    $ yo helm-phr:plugin-helm-phr --force
+    $ yo helm-phr:plugin-top-three-things 
+    $ yo helm-phr:plugin-vaccinations 
+    $ yo helm-phr:plugin-feeds 
+    $ yo helm-phr:feature-user-tour
+    $ yo helm-phr:theme-helm-phr --force
+    $ yo helm-phr:update --theme=helm --force
 ```
+Attribute **--theme** is used to set the name of required theme.
 
 Attribute **--force** is used for overwriting config files by default.
 

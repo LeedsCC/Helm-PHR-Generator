@@ -1,0 +1,45 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+<% for (i = 0; i < plugins.length; i++) { %>
+<% item = plugins[i] %>
+    <% if (item.component && item.componentURL) { %>
+import <%= item.component %> from '<%= item.componentURL %>';
+    <% } %>
+<% } %>
+
+/**
+ * This component includes components RecordsOfTablePopover for non-core plugins
+ *
+ * @return {null}
+ */
+<% if (plugins.length > 0) { %>
+const RecordsOfTablePlugins = ({ typeOfRecord, detail }) => {
+  return (
+    <div>
+    <% for (i = 0; i < plugins.length; i++) { %>
+    <% item = plugins[i] %>
+        <% if (item.plugin && item.component) { %>
+
+      {typeOfRecord === '<%= item.plugin %>' ? <<%= item.component %> detail={detail} /> : null}
+
+        <% } %>
+    <% } %>
+    </div>
+  );
+};
+RecordsOfTablePlugins.propTypes = {
+    typeOfRecord: PropTypes.string,
+    detail: PropTypes.shape({}),
+};
+RecordsOfTablePlugins.defaultProps = {
+    typeOfRecord: '',
+    detail: {},
+};
+<% } else { %>
+const RecordsOfTablePlugins = () => {
+    return null;
+};
+<% } %>
+
+export default RecordsOfTablePlugins;

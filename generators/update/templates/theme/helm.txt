@@ -1,6 +1,8 @@
 export const themeConfigs = {
   isLeedsPHRTheme: true,
     topHeader: {
+      showBackButton: false,
+      showHomeButton: true,
       showNotifications: false,
       showQuestions: true,
       showSearch: false,
@@ -26,8 +28,12 @@ export const themeConfigs = {
     },
     dashboardBeing: {},
     isShowUserPhoto: false,
+    isShowUserBirthday: false,
     isShowUserProfileSettings: false,
     isShowUserProfileSpecification: false,
+    isShowPagesBannersImages: false,
+    isShowPagesSynopsisImages: false,
+    isShowUserAccountPage: false,
     patientsSummaryTitles: {
       'diagnoses': 'Problems / Issues',
       'medications': 'Medications',
