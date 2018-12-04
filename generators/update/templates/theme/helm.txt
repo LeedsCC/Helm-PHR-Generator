@@ -26,6 +26,7 @@ export const themeConfigs = {
       'contacts': false,
       'feeds': false
     },
+    metaTitle: 'Helm',
     dashboardBeing: {},
     isShowUserPhoto: false,
     isShowUserBirthday: false,
