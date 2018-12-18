@@ -8,12 +8,10 @@ import './styles.scss';
 
 const TopHeaderButtons = props => {
     return (
-        <span id="top-header-buttons">
             <% for (i = 0; i < features.length; i++) { %>
                 <% item = features[i] %>
                     < <%= item.name %> {...props} />
             <% } %>
-        </span>
     );
 };
 
