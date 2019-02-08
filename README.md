@@ -99,6 +99,9 @@ Attribute **--theme** is used to set the name of required theme.
 
 Attribute **--force** is used for overwriting config files by default.
 
+Attribute **--skip** is used for skipping user dialog. You can use this attribute with each sub-generator.
+It is necessary if you want to provide automatic work of Generator (in Docker, for example)
+
 When you build will be created, go to project directory and create the build:
 ```
     $ cd PulseTile-React-Core

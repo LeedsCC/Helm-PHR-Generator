@@ -6,11 +6,20 @@ const chalk = require('chalk');
 const functions = require('./functions');
 const commonFunctions = require('../../common/functions');
 
+/**
+ * This variable equals true/false depends on option --skip
+ * (to skip dialog with user)
+ */
+var isSkipDialog;
+
 module.exports = class extends Generator {
 
   constructor(args, opts) {
     super(args, opts);
-    this.option('babel');
+      this.option('skip', {
+          name: 'To skip dialog with user'
+      });
+      isSkipDialog = this.options.skip;
   }
 
   prompting() {
@@ -19,18 +28,22 @@ module.exports = class extends Generator {
       yosay(`Welcome to ${chalk.green('PulseTile-Core')} generator!`)
     );
 
-    const prompts = [
-      {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: `Would you like to clone ${chalk.green('PulseTile-Core')} from GitHub?`,
-        default: true
-      }
-    ];
+    if (isSkipDialog) {
+        return true;
+    } else {
+        const prompts = [
+            {
+                type: 'confirm',
+                name: 'someAnswer',
+                message: `Would you like to clone ${chalk.green('PulseTile-Core')} from GitHub?`,
+                default: true
+            }
+        ];
 
-    return this.prompt(prompts).then(props => {
-      this.props = props;
-  });
+        return this.prompt(prompts).then(props => {
+            this.props = props;
+        });
+    }
   }
 
   writing() {
