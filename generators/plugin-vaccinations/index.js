@@ -5,19 +5,38 @@ const yosay = require('yosay');
 
 const commonFunctions = require('../../common/functions');
 
+/**
+ * This variable equals true/false depends on option --skip
+ * (to skip dialog with user)
+ */
+var isSkipDialog;
+
 module.exports = class extends Generator {
+
+  constructor(args, opts) {
+    super(args, opts);
+    this.option('skip', {
+      name: 'To skip dialog with user'
+    });
+    isSkipDialog = this.options.skip;
+  }
 
   prompting() {
     this.log(yosay(`Welcome to ${chalk.red('Silver-Plugin-Vaccinations')} generator!`));
-    const prompts = [{
-      type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
-    return this.prompt(prompts).then(props => {
-      this.props = props;
-    });
+
+    if (isSkipDialog) {
+        return true;
+    } else {
+        const prompts = [{
+            type: 'confirm',
+            name: 'someAnswer',
+            message: 'Would you like to enable this option?',
+            default: true
+        }];
+        return this.prompt(prompts).then(props => {
+            this.props = props;
+        });
+    }
   }
 
   writing() {
