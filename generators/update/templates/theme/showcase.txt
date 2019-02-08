@@ -49,6 +49,7 @@ const mainThemeConfigs = {
     'topThreeThings': true,
     'feeds': true,
   },
+  metaTitle: 'PulseTile',
   patientsSummaryTitles: {
     'diagnoses': 'Problems / Diagnosis',
     'medications': 'Medications',
